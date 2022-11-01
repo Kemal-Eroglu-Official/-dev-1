@@ -2,6 +2,8 @@ package SaleClasses;
 
 // A data class that holds informations about Product.
 // There is no manipulator methods.
+// We do not use setter methods because 
+// attributes cannot be changed
 public class Product {
 	private String id;
 	private String title;
