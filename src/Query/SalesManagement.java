@@ -18,7 +18,7 @@ public class SalesManagement {
     }
 
     public Sale getSale(int suppleirIndex, int saleIndex) {
-        assert 0 <= suppleirIndex && suppleirIndex < 3;
+        assert 0 <= suppleirIndex && suppleirIndex < this.data.length;
         assert 0 <= saleIndex && saleIndex < this.data[suppleirIndex].length;
         return new Sale(this.data[suppleirIndex][saleIndex]);
     }
@@ -27,6 +27,7 @@ public class SalesManagement {
         return this.data.length;
     }
 
+    // Number of sales in a specific supplier.
     public int length(int whichSupplier) {
         return this.data[whichSupplier].length;
     }
