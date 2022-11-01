@@ -41,7 +41,7 @@ public class Customer {
     }
 
     public String toString() {
-        return id + ", " + name + ", " + email + " ," + country + ", " + adress;
+        return id + ", " + name + ", " + email + ", " + country + ", " + adress;
     }
 
     public String getAdress() {

@@ -74,7 +74,8 @@ public class SalesQuery {
                 }
             }
         }
-        return sale1.getProduct().toString() + " =====> " + biggestProfit + " TL.";
+        return sale1.getProduct().toString() + " =====> " + 
+            "The biggest profit: " + biggestProfit + " TL.";
     }
 
     public String theMostExpensiveProduct() {
@@ -97,7 +98,8 @@ public class SalesQuery {
             }
         }
             
-        return sale1.getProduct().toString() + " =====> " + biggestSalePrice + " TL.";
+        return sale1.getProduct().toString() + " =====> " + 
+            "The most expensive product: " + biggestSalePrice + " TL.";
     }
 
     public String topPurchaser() {
@@ -148,7 +150,8 @@ public class SalesQuery {
             }
         }
 
-        return customers[indexOfMax].toString() + " =====> " + numbersOfCustomersPurchasers[indexOfMax];
+        return customers[indexOfMax].toString() + " =====> " + 
+            "Top purchaser with " + numbersOfCustomersPurchasers[indexOfMax] + " puchases.";
     }
 
     // A method that finds position of a given element in a given array.
@@ -170,7 +173,9 @@ public class SalesQuery {
         for(int i = 0; i < this.salesManagement.numberOfSuppliers(); i++) {
             for(int j = 0; j < this.salesManagement.length(i); j++) {
                 
-                double profit = this.salesManagement.getSale(i, j).getSalesPrice() - this.salesManagement.getSale(i, j).getProduct().getPrice();
+                double salePrice = this.salesManagement.getSale(i, j).getSalesPrice();
+                double price = this.salesManagement.getSale(i, j).getProduct().getPrice();
+                double profit = salePrice - price;
                 totalProfits += (int)profit;
             }
         }
@@ -204,6 +209,7 @@ public class SalesQuery {
             }
         }
 
-        return this.salesManagement.getSale(0, indexOfLeastOne).getProduct().toString() + " =====> " + profits[indexOfLeastOne];
+        return this.salesManagement.getSale(0, indexOfLeastOne).getProduct().toString()
+             + " =====> " + "The least profitable product: " + profits[indexOfLeastOne] + ".";
     }
 }
