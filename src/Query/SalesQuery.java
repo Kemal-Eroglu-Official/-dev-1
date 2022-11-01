@@ -13,7 +13,7 @@ public class SalesQuery {
     public void setup() {
         FileIO fileio = new FileIO();
         
-        // Read data from files and
+        // Read data from files and,
         // assign them to fileio's attributes.
         fileio.takeCustomers();
         fileio.takeProducts();
