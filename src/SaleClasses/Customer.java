@@ -1,4 +1,7 @@
 package SaleClasses;
+
+// A data class that hold informations about customer.
+// There is no manipulator methods.
 public class Customer {
     private String id;
     private String name;
