@@ -76,6 +76,8 @@ public class FileIO {
                             case 4: adress = newOne; break;
                         }
                         
+                        // if 'whichAttribute' is 5,
+                        // it means that the program already took needed informations
                         if (++whichAttribute == 5) {
                             customers[i - 1] = new Customer(id, name, email, country, adress);
                             whichAttribute = 0;
@@ -99,6 +101,7 @@ public class FileIO {
         Product[][] products = new Product[3][];
 
         for (int fileIndex = 0; fileIndex < 3; fileIndex++) {
+            // Creating paths of files
             String path = "src\\FileIO\\data\\S" + String.valueOf(fileIndex + 1) + "_Products.csv";
             int numberOfLines = FileIO.numberOfLinesInFile(path);
 
@@ -106,6 +109,9 @@ public class FileIO {
                 FileReader fileReader = new FileReader(path);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
 
+                // First line includes the tags of ".csv" file.
+                // That's why, the lenght of the array that holds customers should be
+                // number of lines - 1
                 products[fileIndex] = new Product[numberOfLines - 1];
 
                 for (int i = 0; i < numberOfLines; i++) {
@@ -127,6 +133,8 @@ public class FileIO {
                                 case 4: price = Double.valueOf(newOne); break;
                             }
 
+                            // if 'whichAttribute' is 5,
+                            // it means that the program already took needed informations
                             if (++whichAttribute == 5) {
                                 products[fileIndex][i - 1] = new Product(id, title, rate, numberOfReviews, price);
                                 whichAttribute = 0;
@@ -156,6 +164,7 @@ public class FileIO {
         Sale[][] sales = new Sale[3][];
 
         for (int fileIndex = 0; fileIndex < 3; fileIndex++) {
+            // Creating paths of files
             String path = "src\\FileIO\\data\\S" + String.valueOf(fileIndex + 1) + "_Sales.csv";
             int numberOfLines = FileIO.numberOfLinesInFile(path);
 
@@ -163,6 +172,9 @@ public class FileIO {
                 FileReader fileReader = new FileReader(path);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
 
+                // First line includes the tags of ".csv" file.
+                // That's why, the lenght of the array that holds customers should be
+                // number of lines - 1
                 sales[fileIndex] = new Sale[numberOfLines - 1];
 
                 for (int i = 0; i < numberOfLines; i++) {
@@ -185,6 +197,8 @@ public class FileIO {
                                 case 3: sales_date = newOne; break;
                             }
 
+                            // if 'whichAttribute' is 4,
+                            // it means that the program already took needed informations
                             if (++whichAttribute == 4) {
                                 Product product = this.getProductFromId(product_id);
                                 Customer customer = this.getCustomerFromId(customer_id);
@@ -213,6 +227,7 @@ public class FileIO {
         this.sales = sales;
     }
 
+    // A method that find and return a Product searching by id
     private Product getProductFromId(String id) {
         for (int i = 0; i < this.products.length; i++) {
             for (int j = 0; j < this.products[i].length; j++) {
@@ -224,6 +239,7 @@ public class FileIO {
         return null;
     }
 
+    // A method that find and return a Customer searching by id
     private Customer getCustomerFromId(String id) {
         for (int i = 0; i < this.customers.length; i++) {
             if (this.customers[i].getId().equals(id)) {
@@ -232,7 +248,7 @@ public class FileIO {
         }
         return null;
     }
-
+    
     public Customer[] getCustomers() {
         Customer[] data = new Customer[this.customers.length];
         for (int i = 0; i < this.customers.length; i++) {
@@ -244,8 +260,10 @@ public class FileIO {
     public Product[][] getProducts() {
         Product[][] data = new Product[this.products.length][];
         for (int i = 0; i < this.products.length; i++) {
+            
             Product[] row = new Product[this.products[i].length];
             for (int j = 0; j < this.products[i].length; j++) {
+                
                 row[j] = this.products[i][j];
             }
             data[i] = row;
@@ -256,6 +274,7 @@ public class FileIO {
     public Sale[][] getSales() {
         Sale[][] data = new Sale[this.sales.length][];
         for (int i = 0; i < this.sales.length; i++) {
+            
             Sale[] row = new Sale[this.sales[i].length];
             for (int j = 0; j < this.sales[i].length; j++) {
                 row[j] = this.sales[i][j];
