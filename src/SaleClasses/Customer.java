@@ -2,6 +2,8 @@ package SaleClasses;
 
 // A data class that hold informations about customer.
 // There is no manipulator methods.
+// We do not use setter methods because 
+// attributes cannot be changed
 public class Customer {
     private String id;
     private String name;
@@ -16,7 +18,8 @@ public class Customer {
         this.country = country;
         this.adress = adress;
     }
-
+    
+    // This is a copy constructor of 'Customer' class
     public Customer(Customer c) {
         this.id = c.id;
         this.name = c.name;
