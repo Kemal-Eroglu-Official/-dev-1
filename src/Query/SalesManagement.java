@@ -5,13 +5,16 @@ import SaleClasses.Sale;
 public class SalesManagement {
     private Sale[][] data;
     
-    public SalesManagement() {
-        this.data = new Sale[3][];
-    }
-
     public SalesManagement(Sale[][] sales) {
-        assert sales.length == 3;
-        this.data = sales;
+        Sale[][] data = new Sale[sales.length][];
+        for (int i = 0; i < sales.length; i++) {
+            Sale[] row = new Sale[sales[i].length];
+            for (int j = 0; j < sales[i].length; j++) {
+                row[j] = sales[i][j];
+            }
+            data[i] = row;
+        }
+        this.data = data;
     }
 
     public Sale getSale(int suppleirIndex, int saleIndex) {
