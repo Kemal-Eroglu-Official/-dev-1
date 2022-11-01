@@ -32,7 +32,8 @@ public class SalesQuery {
         this.salesManagement = new SalesManagement(fileio.getSales());
     }
 
-    // 
+    // The method that finds wanted objects.
+    // It returns all the information as a string at once.
     public String find() {
         String text = theMostProfitableProduct();
         text += "\n" + theMostExpensiveProduct();
@@ -54,11 +55,16 @@ public class SalesQuery {
     }
 
     public String theMostProfitableProduct() {
+        // sale1 <= the first sale.
         Sale sale1 = this.salesManagement.getSale(0, 0);
         double biggestProfit = sale1.getSalesPrice() - sale1.getProduct().getPrice();
 
+        // A 'for loop' that scans every sale.
         for (int i = 0; i < this.salesManagement.numberOfSuppliers(); i++) {
             for (int j = 0; j < this.salesManagement.length(i); j++) {
+                
+                // Take a new sale and,
+                // calculate its profit.
                 Sale sale2 = this.salesManagement.getSale(i, j);
                 double profitOfSale2 = sale2.getSalesPrice() - sale2.getProduct().getPrice();
 
@@ -68,15 +74,19 @@ public class SalesQuery {
                 }
             }
         }
-        return sale1.getProduct().toString() + " =====> " + biggestProfit;
+        return sale1.getProduct().toString() + " =====> " + biggestProfit + " TL.";
     }
 
     public String theMostExpensiveProduct() {
         Sale sale1 = this.salesManagement.getSale(0, 0);
         double biggestSalePrice = sale1.getSalesPrice();
 
+        // A 'for loop' that scans every sale.
         for (int i = 0; i < this.salesManagement.numberOfSuppliers(); i++) {
             for (int j = 0; j < this.salesManagement.length(i); j++) {
+                
+                // Take a new sale and,
+                // calculate its profit.
                 Sale sale2 = this.salesManagement.getSale(i, j);
                 double salesPrice2 = sale2.getSalesPrice();
 
@@ -87,47 +97,62 @@ public class SalesQuery {
             }
         }
             
-        return sale1.getProduct().toString() + " =====> " + biggestSalePrice;
+        return sale1.getProduct().toString() + " =====> " + biggestSalePrice + " TL.";
     }
 
     public String topPurchaser() {
-        int totalNumberOfCustomer = this.numberOfCustomers;
-
-        Customer[] customers = new Customer[totalNumberOfCustomer];
-        int[] numbersOfCustomersPurchasers = new int[totalNumberOfCustomer];
         
+        // Create two arrays.
+        // The first one will store customers.
+        // The second one will keep track of how many purchases each customer has made.
+        Customer[] customers = new Customer[this.numberOfCustomers];
+        int[] numbersOfCustomersPurchasers = new int[this.numberOfCustomers];
+        
+        // Store the first customer.
         customers[0] = this.salesManagement.getSale(0, 0).getCustomer();
         numbersOfCustomersPurchasers[0] = 1;
+        
+        // This variable will be used when it is necessary to add a new customer.
         int indexOfFirstEmpty = 1;
 
+        // A 'for loop' that scans every sale.
         for (int i = 0; i < this.salesManagement.numberOfSuppliers(); i++) {
             for (int j = 0; j < this.salesManagement.length(i); j++) {
 
+                // Take a new customer.
                 Customer newOne = this.salesManagement.getSale(i, j).getCustomer();
+                
+                // Find the position of this new customer in 'customers' array.
+                // If pos is -1, that means 'newOne' is not in 'customers' array yet. 
                 int pos = findPositionOfElement(customers, newOne);
 
                 if (pos == -1) {
+                    // Add 'newOne' to ''customers.
                     customers[indexOfFirstEmpty] = newOne;
                     numbersOfCustomersPurchasers[indexOfFirstEmpty] = 1;
                     indexOfFirstEmpty++;
                 }
                 else {
+                    // If 'newOne' is in 'customers' already.
+                    // Increase customer 'newOne's purchase count by one.
                     numbersOfCustomersPurchasers[pos]++;
                 }
             }
         }
 
+        // Find the index of top purchaser.
         int indexOfMax = 0;
-        for (int i = 0; i < totalNumberOfCustomer; i++) {
+        for (int i = 0; i < this.numberOfCustomers; i++) {
             if (numbersOfCustomersPurchasers[indexOfMax] < numbersOfCustomersPurchasers[i]) {
                 indexOfMax = i;
             }
         }
 
         return customers[indexOfMax].toString() + " =====> " + numbersOfCustomersPurchasers[indexOfMax];
-        
     }
 
+    // A method that finds position of a given element in a given array.
+    // If return value is -1, it means that the element is not in the array.
     private int findPositionOfElement(Customer[] arr, Customer elem) {
         for (int i = 0; i < arr.length; i++) {
             if (elem.equals(arr[i])) {
@@ -141,8 +166,10 @@ public class SalesQuery {
     // Calculating the total profits of all sales.
     public String totalProfit() {
         int totalProfits = 0;
+        
         for(int i = 0; i < this.salesManagement.numberOfSuppliers(); i++) {
             for(int j = 0; j < this.salesManagement.length(i); j++) {
+                
                 double profit = this.salesManagement.getSale(i, j).getSalesPrice() - this.salesManagement.getSale(i, j).getProduct().getPrice();
                 totalProfits += (int)profit;
             }
