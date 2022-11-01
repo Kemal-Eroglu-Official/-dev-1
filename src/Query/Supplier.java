@@ -1,5 +1,4 @@
 package Query;
-// import java.util.Arrays;
 
 import SaleClasses.Product;
 
@@ -7,14 +6,12 @@ public class Supplier {
     private Product[] data;
 
     public Supplier(Product[] products) {
-    	this.data = copy(products);
-    }
-    
-    private Product[] copy(Product[] p) {
-    	Product[] temp = new Product[p.length];
-    	for(int i = 0; i < p.length; i++)
-    		temp[i] = new Product(p[i]);
-    	return temp;
+        Product[] data = new Product[products.length];
+
+        for (int i = 0; i < products.length; i++) {
+            data[i] = products[i];
+        }
+    	this.data = data;
     }
 
     public int length() {
