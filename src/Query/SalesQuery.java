@@ -131,6 +131,8 @@ public class SalesQuery {
         return -1;
     }
 
+        
+    // Calculating the total profits of all sales.
     public String totalProfit() {
         int totalProfits = 0;
         for(int i = 0; i < this.salesManagement.numberOfSuppliers(); i++) {
@@ -142,19 +144,27 @@ public class SalesQuery {
         return "Total profit: " + totalProfits + " TL.";
     }
 
-    public String theLeastProfitProductOfS1() {
-        // calculate the least-profit product of S1. (Please include the amount of profit to output.)
 
-        int numberOfSales = this.salesManagement.length(0);
+    // Calculating the least-profit product of S1 sales
+    public String theLeastProfitProductOfS1() {
+        // first we assign the length of S1 sales to 'numberOfSales'
+        int numberOfSales = this.salesManagement.length(0); 
+        
+        // This is a temporary array of length of S1 and sales of S1
         Double[] profits = new Double[numberOfSales];
         
+        // Profits of each products are assigned the 'profits' array
         for(int i = 0; i < numberOfSales; i++) {
             Sale sale = this.salesManagement.getSale(0, i);
             profits[i] = sale.getSalesPrice() - sale.getProduct().getPrice();
         }
-
+        
+        // We assign this variable to find the product
         int indexOfLeastOne = 0;
-
+        
+        // This loop finds the least profits and 
+        // gives us where the position in the array 'profits' is
+        
         for(int i = 0; i < profits.length; i++) {
             if(profits[indexOfLeastOne] > profits[i]) {
                 indexOfLeastOne = i;
