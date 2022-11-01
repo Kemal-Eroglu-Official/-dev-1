@@ -14,15 +14,17 @@ public class SalesQuery {
         FileIO fileio = new FileIO();
         
         // Read data from files and
-        // assign them to fileio's attributes
+        // assign them to fileio's attributes.
         fileio.takeCustomers();
         fileio.takeProducts();
         fileio.takeSales();
         
+        // Number of customers will be needed in method 'topPurchaser'.
         this.numberOfCustomers = fileio.getCustomers().length;
+        Product[][] products = fileio.getProducts();
+        
         this.suppliers = new Supplier[3];
         
-        Product[][] products = fileio.getProducts();
         for (int i = 0; i < 3; i++) {
             this.suppliers[i] = new Supplier(products[i]);
         }
@@ -30,6 +32,7 @@ public class SalesQuery {
         this.salesManagement = new SalesManagement(fileio.getSales());
     }
 
+    // 
     public String find() {
         String text = theMostProfitableProduct();
         text += "\n" + theMostExpensiveProduct();
