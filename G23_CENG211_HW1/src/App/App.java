@@ -4,10 +4,10 @@ package App;
  *  The program starts from here and creates an SalesQuery object
  *  then calls our homework questions one by one. 
  *  
- *    @author  Kemal Eroğlu      280201009
- *    @author  Ünal Dalkılıç     280201068
- *    @author  Sıddık Can Boru   280201073
- *    @author  Tarık Emre Gündüz 280201075
+ *    @author  Kemal Eroğlu
+ *    @author  Ünal Dalkılıç
+ *    @author  Sıddık Can Boru
+ *    @author  Tarık Emre Gündüz
  */
 
 import Query.SalesQuery;
