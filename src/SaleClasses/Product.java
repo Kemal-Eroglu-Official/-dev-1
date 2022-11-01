@@ -1,4 +1,7 @@
 package SaleClasses;
+
+// A data class that holds informations about Product.
+// There is no manipulator methods.
 public class Product {
 	private String id;
 	private String title;
