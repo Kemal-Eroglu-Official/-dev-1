@@ -17,6 +17,7 @@ public class Product {
 		this.price = price;
 	}
 
+	// This is a copy constructor of 'Product' class
 	public Product(Product p) {
 		this.id = p.id;
 		this.title = p.title;
@@ -24,6 +25,7 @@ public class Product {
 		this.numberOfReviews = p.numberOfReviews;
 		this.price = p.price;
 	}
+	
 
 	public boolean equals(Product p) {
 		if (p == null) {
